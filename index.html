@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Algoritmos de Comparação</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
+    <style>
+
+        h1, h2 {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .introduction {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .resume {
+            width: 400px;
+        }
+
+        .graph {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+        }
+
+        .container {
+            width: 400px;
+            height: 400px;
+            margin: 30px 10px;
+        }
+
+        .container > canvas {
+            width: 200px;
+            height: 200px;
+        }
+
+        .graph-area {
+            width: 300px;
+            height: 300px;
+            
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="introduction">
+        <section class="resume">
+            <h1>Algoritmos de Ordenação</h1>
+            <p>O presente estudo tem como objetivo mostrar a complexidade assintótica de algoritmos de ordenação,
+            para isso foi escolhido dois algorítmos diferentes: QuickSort e Bubblesort.
+            </p>
+        </section>
+         <section>
+             <h1> Como foi feito? </h1>
+             <p> Para gerar os gráficos utilizamos 10 arrays de 3 tamanhos definidos: mil elementos, 10 mil elementos e 100 mil elementos </p>
+        </section>
+    </div>
+    <div class="graph">
+        <section class="container">
+            <h2> QuickSort </h2>
+            <div class="graph-area">
+                <canvas id="quickGraph" width="400" height="400"></canvas>
+            </div>
+            <p> Teste </p>
+        </section>
+        <section class="container">
+            <h2> BubbleSort </h2>
+            <div class="graph-area">
+                <canvas id="bubbleGraph" width="200" height="200" aria-label="Hello ARIA World" role="img" ></canvas>
+            </div>
+        </section>
+        <section class="container">
+            <h2> Comparação </h2>
+            <div class="graph-area">
+                <canvas id="comparative" width="400" height="300"></canvas> 
+            </div>
+        </section>
+    </div>
+
+</div>
+
+    <script src="data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <script>
+        let quickGraph = document.getElementById('quickGraph');
+        let bubbleGraph = document.getElementById('bubbleGraph');
+        let comparativeGraph = document.getElementById('comparative');
+
+        const quickChart = new Chart(quickGraph, {
+            type: 'line', 
+            data: {
+                datasets: [{
+                    label: 'Quicksort 1K',
+                    borderColor: 'rgb(255, 130, 188)',
+                    backgroundColor: 'rgb(255, 130, 188)',
+                    data: SortingData.quicksort1k,
+                    fill: false
+                }, {
+                    label: 'Quicksort 10K',
+                    borderColor: 'rgb(191, 31, 105)',
+                    backgroundColor: 'rgb(191, 31, 105)',
+                    data: SortingData.quicksort10k,
+                    fill: false,
+                },{
+                    label: 'Quicksort 100k',
+                    borderColor: 'rgb(255, 0, 118)',
+                    backgroundColor: 'rgb(255, 0, 118)',
+                    data: SortingData.quicksort100k,
+                    fill: false,
+                }]
+            },
+            options: {
+                legend: {
+                    labels: { boxWidth: 15, fontSize: 10, padding: 10}
+                },
+            },
+        })
+
+        const bubbleChart = new Chart(bubbleGraph, {
+            type: 'line', 
+            data: {
+                datasets: [{
+                    label: 'Bubble 1K',
+                    borderColor: 'rgb(121, 168, 242)',
+                    backgroundColor: 'rgb(121, 168, 242)',
+                    data: SortingData.bubble1k,
+                    fill: false,
+                }, {
+                    label: 'Bubble 10K',
+                    borderColor: 'rgb(41, 108, 214)',
+                    backgroundColor: 'rgb(19, 108, 138)',
+                    data: SortingData.bubble10k,
+                    fill: false,
+                }, {
+                    label: 'Bubble 100k',
+                    borderColor: 'rgb(25, 0, 255)',
+                    backgroundColor: 'rgb(25, 0, 255)',
+                    data: SortingData.bubble100k,
+                    fill: false,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {beginAtZero: true   }
+                    }]
+                },
+                legend: {
+                    labels: { boxWidth: 15, fontSize: 10}
+                }
+            }
+        })
+
+        const chart = new Chart(comparativeGraph, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Quicksort 10K',
+                    borderColor: 'rgb(191, 31, 105)',
+                    backgroundColor: 'rgb(191, 31, 105)',
+                    data: SortingData.quicksort10k,
+                    fill: false,
+                },{
+                    label: 'Quicksort 100k',
+                    borderColor: 'rgb(255, 0, 118)',
+                    backgroundColor: 'rgb(255, 0, 118)',
+                    data: SortingData.quicksort100k,
+                    fill: false,
+                }, {
+                    label: 'Bubble 10K',
+                    borderColor: 'rgb(41, 108, 214)',
+                    backgroundColor: 'rgb(19, 108, 138)',
+                    data: SortingData.bubble10k,
+                    fill: false,
+                }, {
+                    label: 'Bubble 100k',
+                    borderColor: 'rgb(25, 0, 255)',
+                    backgroundColor: 'rgb(25, 0, 255)',
+                    data: SortingData.bubble100k,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                        beginAtZero: true
+                        }
+                     }]
+                },
+                legend: {
+                    labels: { boxWidth: 15, fontSize: 10}
+                }
+            },
+        })
+    </script>
+</body>
+</html>
