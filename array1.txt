@@ -1,0 +1,1 @@
+1K_Array_10 1000 0,352418 0,5182644 PC_TOP QuickSort Javascript Ubuntu19.04 64bits Nao 11270681

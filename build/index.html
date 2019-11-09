@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Algoritmos de Comparação</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="graph" width="400" height="400"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <script>
+        let ctx = document.getElementById('graph');
+    let valores =[
+    {x: 0, y:0.1454726},
+{x: 0, y:0.233373},
+{x: 0, y:0.2429403},
+{x: 0, y:0.3213906},
+{x: 0, y:0.2322776},
+{x: 0, y:0.158642},
+{x: 0, y:0.2382727},
+{x: 0, y:0.3489162},
+{x: 0, y:0.1616139},
+{x: 0, y:0.3548871},
+{x: 0, y:0.1540499},
+{x: 0, y:0.31149},
+{x: 0, y:0.2280821},
+{x: 0, y:0.3048879},
+{x: 0, y:0.2453562},
+{x: 0, y:0.2787816},
+{x: 0, y:0.4051844},
+{x: 0, y:0.2575022},
+{x: 0, y:0.2431602},
+{x: 0, y:0.2434095},
+{x: 0, y:0.2576214},
+{x: 0, y:0.301845},
+{x: 0, y:0.2262301},
+{x: 0, y:0.2461986},
+{x: 0, y:0.2697981},
+{x: 0, y:0.2333105},
+{x: 0, y:0.2428173},
+{x: 0, y:0.3234185},
+{x: 0, y:0.253206},
+{x: 0, y:0.3374523},
+    ]
+let bubble = [
+{x: 0, y:11.0629215},
+{x: 0, y:1.5416059},
+{x: 0, y:1.4517905},
+{x: 0, y:1.0659189},
+{x: 0, y:1.0456017},
+{x: 0, y:1.5037871},
+{x: 0, y:1.5836004},
+{x: 0, y:1.6578911},
+{x: 0, y:1.5798935},
+{x: 0, y:1.4520495},
+{x: 0, y:1.2309533},
+{x: 0, y:1.5993511},
+{x: 0, y:1.4149503},
+{x: 0, y:1.6113314},
+{x: 0, y:1.7259632},
+{x: 0, y:1.3001325},
+{x: 0, y:1.471001},
+{x: 0, y:1.479214},
+{x: 0, y:1.5755999},
+{x: 0, y:1.484822},
+{x: 0, y:1.6871071},
+{x: 0, y:1.5981209},
+{x: 0, y:1.6345249},
+{x: 0, y:1.8499008},
+{x: 0, y:1.8089103},
+{x: 0, y:1.6554476},
+{x: 0, y:1.4254357},
+{x: 0, y:1.4719081},
+{x: 0, y:1.4136521},
+{x: 0, y:1.6095278},
+
+]
+        const chart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Quicksort',
+                    borderColor: 'rgb(255, 50, 132)',
+                    data: valores,
+                    fill: true
+                }, {
+                    label: 'Bubble',
+                    borderColor: 'rgb(33, 33, 33)',
+                    data: bubble,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+        yAxes: [{
+            display: true,
+            ticks: {
+            max: 2  // minimum value will be 0.
+            }
+        }]
+    }
+            }
+        })
+    </script>
+</body>
+</html>
