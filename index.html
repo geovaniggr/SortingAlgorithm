@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav>
+        <a href="#inicio"> Inicio </a>
+        <a href="#conceitos"> Conceitos </a>
+        <a href="#graficos"> Gráficos </a>
+    </nav>
 
     <article>
-        <section class="introduction">
+        <section id="inicio" class="introduction">
             <div class="abstract container">
                 <h1>Algoritmos de Ordenação</h1>
                 <p>O presente estudo tem como objetivo mostrar a complexidade assintótica de algoritmos de ordenação,
@@ -34,9 +39,39 @@
                 </ul>
             </div>
         </section>
-        <h1>Resultados</h1>
-        <span>Os gráficos são dinámicos, clique no rótulo para exibir ou ocultar </span>
-        <section class="graphs">
+        <section class="concepts container">
+            <h1 id="conceitos"> BubbleSort </h1>
+            <p> Esse algorítmo tem como característica comparar valores em posições consecutivas, na primeira chamada
+                do método é escolhido o elemento na posição inicial como pivô, para uma ordenação crescente será feito
+                a seguinte comparação: 
+                <ul>
+                    <li> Pivô <strong>></strong> Elemento Adjacente: Troque de Posição</li>
+                    <li> Pivô <strong><</strong> Elemento Adjacente: Mantenha a posição e o pivô se torna o elemento adjacente</li>
+                </ul>
+                Após isso será necessário percorrer o array novamente, entretanto podemos percorrer 1 elemento a menos 
+                pois a última posição contém o maior valor do array.
+            </p>
+            <h1> QuickSort </h1>
+            <p> O quicksort também tem como característica ter um pivô para comparação de valores, entretanto
+                o algoritmo utiliza o paradigma de <strong>Divisão e Conquista</strong>, reduzindo o problema recursivamente, na 
+                primeira chamada o array pode ter como pivô um valor em uma posição aleatória, e a partir disso é feito comparações 
+                com os elementos para gerar a seguinte disposição: 
+                <ul>
+                    <li> Valores menores à esquerda do pivô</li>
+                    <li> Valores maiores à direita do pivô</li>
+                </ul>
+                Após isso o array estara ordenado em relação ao pivô, basta agora utilizar o quicksort à direita e à esquerda 
+                recursivamente para que ao desempilhar as chamadas ter um array ordenado. 
+            </p>
+        </section>
+        <div class="results">
+            <h1>Resultados</h1>
+            <p> Os gráficos estão classificados por <strong>tamanho do problema (número de elementos do array)
+                x Tempo de Ordenação em milissegundos (ms).</strong>
+            </p>
+            <span>Além disso são dinámicos, clique no rótulo para exibir ou ocultar uma medida</span>
+        </div>
+        <section id="graficos" class="graphs">
             <div class="box">
                 <h2> QuickSort </h2>
                 <canvas id="quickGraph" width="400" height="400" aria-label="Quicksort Graph" role="img" ></canvas>
@@ -50,7 +85,7 @@
                 <canvas id="compartiveGraph" width="400" height="400" aria-label="Quicksort Graph" role="img" ></canvas>
             </div>
         </section>
-        <section class="container conclusion">
+        <section class="conclusion">
             <h1>Tabela Comparativa</h1>
             <table>
                 <tr>
