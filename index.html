@@ -23,11 +23,11 @@
             </div>
             <div class="sample-type container">
                 <h1>Como foi feito?</h1>
-                <p>Para gerar os gráficos utilizei como espaço amostral 30 arrays com tamanhos diferentes</p>
+                <p>Para gerar os gráficos utilizei como espaço amostral 150 arrays com tamanhos diferentes</p>
                 <ul>
-                    <li>10 arrays: 1.000 elementos</li>
-                    <li>10 arrays: 10.000 elementos</li>
-                    <li>10 arrays: 100.000 elementos</li>
+                    <li>50 arrays: 1.000 elementos</li>
+                    <li>50 arrays: 10.000 elementos</li>
+                    <li>50 arrays: 100.000 elementos</li>
                 </ul>
             </div>
             <div class="methods container">
@@ -40,34 +40,38 @@
             </div>
         </section>
         <section class="concepts container">
-            <h1 id="conceitos"> BubbleSort </h1>
-            <p> Esse algorítmo tem como característica comparar valores em posições consecutivas, na primeira chamada
-                do método é escolhido o elemento na posição inicial como pivô, para uma ordenação crescente será feito
-                a seguinte comparação: 
-                <ul>
-                    <li> Pivô <strong>></strong> Elemento Adjacente: Troque de Posição</li>
-                    <li> Pivô <strong><</strong> Elemento Adjacente: Mantenha a posição e o pivô se torna o elemento adjacente</li>
-                </ul>
-                Após isso será necessário percorrer o array novamente, entretanto podemos percorrer 1 elemento a menos 
-                pois a última posição contém o maior valor do array.
-            </p>
-            <h1> QuickSort </h1>
-            <p> O quicksort também tem como característica ter um pivô para comparação de valores, entretanto
-                o algoritmo utiliza o paradigma de <strong>Divisão e Conquista</strong>, reduzindo o problema recursivamente, na 
-                primeira chamada o array pode ter como pivô um valor em uma posição aleatória, e a partir disso é feito comparações 
-                com os elementos para gerar a seguinte disposição: 
-                <ul>
-                    <li> Valores menores à esquerda do pivô</li>
-                    <li> Valores maiores à direita do pivô</li>
-                </ul>
-                Após isso o array estara ordenado em relação ao pivô, basta agora utilizar o quicksort à direita e à esquerda 
-                recursivamente para que ao desempilhar as chamadas ter um array ordenado. 
-            </p>
+            <div class="bubble">
+                <h1 id="conceitos"> BubbleSort </h1>
+                <p> Esse algorítmo tem como característica comparar valores em posições consecutivas, na primeira chamada
+                    do método é escolhido o elemento na posição inicial como pivô, para uma ordenação crescente será feito
+                    a seguinte comparação: 
+                    <ul>
+                        <li> Pivô <strong>></strong> Elemento Adjacente: Troque de Posição</li>
+                        <li> Pivô <strong><</strong> Elemento Adjacente: Mantenha a posição e o pivô se torna o elemento adjacente</li>
+                    </ul>
+                    Após isso será necessário percorrer o array novamente, entretanto podemos percorrer 1 elemento a menos 
+                    pois a última posição contém o maior valor do array.
+                </p>
+            </div>
+            <div class="quick">
+                <h1> QuickSort </h1>
+                <p> O quicksort também tem como característica ter um pivô para comparação de valores, entretanto
+                    o algoritmo utiliza o paradigma de <strong>Divisão e Conquista</strong>, reduzindo o problema recursivamente, na 
+                    primeira chamada o array pode ter como pivô um valor em uma posição aleatória, e a partir disso é feito comparações 
+                    com os elementos para gerar a seguinte disposição: 
+                    <ul>
+                        <li> Valores menores à esquerda do pivô</li>
+                        <li> Valores maiores à direita do pivô</li>
+                    </ul>
+                    Após isso o array estara ordenado em relação ao pivô, basta agora utilizar o quicksort à direita e à esquerda 
+                    recursivamente para que ao desempilhar as chamadas ter um array ordenado. 
+                </p>
+            </div>
         </section>
         <div class="results">
             <h1>Resultados</h1>
             <p> Os gráficos estão classificados por <strong>tamanho do problema (número de elementos do array)
-                x Tempo de Ordenação em milissegundos (ms).</strong>
+                x Tempo de Ordenação em segundos (s).</strong>
             </p>
             <span>Além disso são dinámicos, clique no rótulo para exibir ou ocultar uma medida</span>
         </div>
@@ -95,18 +99,18 @@
                 </tr>
                 <tr>
                     <td>1.000</td>
-                    <td>0.004s</td>
-                    <td>0.0002s</td>
+                    <td>0.0088</td>
+                    <td>0.0003</td>
                 </tr>
                 <tr>
                     <td>10.000</td>
-                    <td>0.4s</td>
-                    <td>0.001s</td>
+                    <td>0.7567</td>
+                    <td>0.0021</td>
                 </tr>
                 <tr>
                     <td>100.000</td>
-                    <td>41s</td>
-                    <td>0.008s</td>
+                    <td>84.7692</td>
+                    <td>0.0242</td>
                 </tr>
             </table>
             <div class="end">
@@ -120,6 +124,10 @@
             </div>
         </section>
     </article>
+    <footer>
+        <span>Trabalho para disciplina de Introdução à Análise de Algoritmos</span>
+        <a href="https://github.com/geovaniggr/SortingAlgorithm">Repositório [Github]</a> 
+    </footer>
 
     <script src="data.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -130,25 +138,26 @@
         let comparativeGraph = document.getElementById('compartiveGraph');
 
         const quickChart = new Chart(quickGraph, {
-            type: 'line', 
+            type: 'line',
             data: {
+                labels: SortingData.labels,
                 datasets: [{
                     label: 'Quicksort 1K',
                     borderColor: 'rgb(255, 130, 188)',
                     backgroundColor: 'rgb(255, 130, 188)',
-                    data: SortingData.quicksort1k,
+                    data: SortingData.quicksortSegundos1K,
                     fill: false
                 }, {
                     label: 'Quicksort 10K',
                     borderColor: 'rgb(191, 31, 105)',
                     backgroundColor: 'rgb(191, 31, 105)',
-                    data: SortingData.quicksort10k,
+                    data: SortingData.quicksortSegundos10K,
                     fill: false,
                 },{
                     label: 'Quicksort 100k',
                     borderColor: 'rgb(255, 0, 118)',
                     backgroundColor: 'rgb(255, 0, 118)',
-                    data: SortingData.quicksort100k,
+                    data: SortingData.quicksortSegundos100K,
                     fill: false,
                 }]
             },
@@ -165,23 +174,24 @@
         const bubbleChart = new Chart(bubbleGraph, {
             type: 'line', 
             data: {
+                labels: SortingData.labels,
                 datasets: [{
                     label: 'Bubble 1K',
                     borderColor: 'rgb(121, 168, 242)',
                     backgroundColor: 'rgb(121, 168, 242)',
-                    data: SortingData.bubble1k,
+                    data: SortingData.bubbleSegundos1K,
                     fill: false,
                 }, {
                     label: 'Bubble 10K',
                     borderColor: 'rgb(41, 108, 214)',
                     backgroundColor: 'rgb(19, 108, 138)',
-                    data: SortingData.bubble10k,
+                    data: SortingData.bubbleSegundos10K,
                     fill: false,
                 }, {
                     label: 'Bubble 100k',
                     borderColor: 'rgb(25, 0, 255)',
                     backgroundColor: 'rgb(25, 0, 255)',
-                    data: SortingData.bubble100k,
+                    data: SortingData.bubbleSegundos100K,
                     fill: false,
                 }]
             },
@@ -200,29 +210,30 @@
         const chart = new Chart(comparativeGraph, {
             type: 'line',
             data: {
+                labels: SortingData.labels,
                 datasets: [{
                     label: 'Quicksort 10K',
                     borderColor: 'rgb(191, 31, 105)',
                     backgroundColor: 'rgb(191, 31, 105)',
-                    data: SortingData.quicksort10k,
+                    data: SortingData.quicksortSegundos1K,
                     fill: false,
                 },{
                     label: 'Quicksort 100k',
                     borderColor: 'rgb(255, 0, 118)',
                     backgroundColor: 'rgb(255, 0, 118)',
-                    data: SortingData.quicksort100k,
+                    data: SortingData.quicksortSegundos100K,
                     fill: false,
                 }, {
                     label: 'Bubble 10K',
                     borderColor: 'rgb(41, 108, 214)',
                     backgroundColor: 'rgb(19, 108, 138)',
-                    data: SortingData.bubble10k,
+                    data: SortingData.bubbleSegundos10K,
                     fill: false,
                 }, {
                     label: 'Bubble 100k',
                     borderColor: 'rgb(25, 0, 255)',
                     backgroundColor: 'rgb(25, 0, 255)',
-                    data: SortingData.bubble100k,
+                    data: SortingData.bubbleSegundos100K,
                     fill: false,
                 }]
             },
