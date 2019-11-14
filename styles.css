@@ -100,6 +100,7 @@ footer  a {
 
 .concepts div {
     width: 80%;
+    text-align: justify;
 }
 
 .concepts > p {
@@ -144,7 +145,8 @@ td {
 @media (max-width: 1145px){
 
     nav {
-        font-size: 1rem;
+        font-size: 1.2rem;
+        height: 80px;
     }
 
     .introduction, .graphs {
@@ -152,7 +154,7 @@ td {
     }
 
     .abstract {
-        margin-top: 0px;
+        margin-top: 20px;
     }
 
     .sample-type, .methods {
@@ -173,6 +175,14 @@ td {
 
     .box {
         width: 60%;
+    }
+
+    .concepts div {
+        width: 100%;
+    }
+
+    .conclusion > h1 {
+        font-size: 1rem;
     }
 
 }
