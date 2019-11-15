@@ -123,6 +123,17 @@ footer  a {
     width: 450px;
 }
 
+.compMergeQuick {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.spaceLeft {
+    margin-left: 30px;
+    width: 90%;
+    text-align: justify;
+}
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;

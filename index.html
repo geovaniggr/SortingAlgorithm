@@ -86,7 +86,7 @@
             </div>
             <div class="box">
                 <h2> Comparação </h2>
-                <canvas id="compartiveGraph" width="400" height="400" aria-label="Quicksort Graph" role="img" ></canvas>
+                <canvas id="comparative" width="400" height="400" aria-label="Quicksort Graph" role="img" ></canvas>
             </div>
         </section>
         <section class="conclusion">
@@ -123,6 +123,50 @@
                 </p>
             </div>
         </section>
+    <section class="compMergeQuick">
+        <div class="spaceLeft">
+            <h1> MergeSort x Quicksort</h1>
+            <p> Como a diferença no tempo de execução entre o Quicksort e o BubbleSort são de fato gigantes, optei por 
+                ver como se comporta um outro algoritmo que ∈ O(n * logn), no caso o Mergesort, esse também utiliza o método
+                da divisão e conquista, entretanto, a estratégia é diferente, o Mergesort divide o array principal em 2 e 
+                recursivamente quebra essas partes até o tamanho minimo de 2 elementos e ao desempilhar ordena os elementos corretamente,
+                tornando-se apenas necessário intercalar os 2 arrays ordenados no final.
+            </p>
+        </div>
+        <div class="graphs">
+            <div class="box">
+                <h2> MergeSort </h2>
+                <canvas id="mergeGraph" width="400" height="400" aria-label="Mergesort Graph" role="img" ></canvas>
+            </div>
+            <div class="box">
+                <h2> MergeSort x QuickSort </h2>
+                <canvas id="compLogGraph" width="400" height="400" aria-label="Merge vs Quick Graph" role="img" ></canvas>
+            </div>
+        </div>
+        <div class="spaceLeft"> 
+            <p> Como é possível observar os tempos de ambos algoritmos são bem semelhantes,
+                entretanto, o MergeSort demonstra ter uma grande variação de tempo em relação a disposição
+                de elementos no array.
+            </p>
+            <p>
+                A diferença entre ambos algoritmos está na constante absorvida na análise assintótica, onde o quicksort 
+                leva vantagem, ocasionando que seu tempo de ordenação na pratica seja muito mais eficiente. Como
+                apresentado, existe um caso onde o Quicksort demonstra ter problemas: arrays ordenados.
+            </p>
+            <strong>Para um último teste foi tomado um array ordenado de tamanho 100.000</strong>
+            <p>
+                <ul>
+                    <li> Mergesort demorou: <strong>0.228 </strong>segundos para fazer a ordenação</li>
+                    <li> Quicksort não conseguiu fazer a ordenação.</li>
+                </ul>
+                O metodo particiona encontrou dificuldades para conseguir ordenar um array ordenado, isso porque
+                a cada execução será necessário empilhar um array de (n-1) elementos de forma que o Node.js, rapidamente
+                antingiu o tamanho máximo de pilhas de chamadas.<br>
+                O Quicksort conseguiu ordenar no máximo 8300 elementos de um array e demorou <strong>0.211</strong> segundos,
+                demonstrando que para esse caso em específico sua complexidade é realmente quadrática.
+            </p>
+        </div>
+    </section>
     </article>
     <footer>
         <span>Trabalho para disciplina de Introdução à Análise de Algoritmos</span>
@@ -135,7 +179,9 @@
     <script>
         let quickGraph = document.getElementById('quickGraph');
         let bubbleGraph = document.getElementById('bubbleGraph');
-        let comparativeGraph = document.getElementById('compartiveGraph');
+        let mergeGraph = document.getElementById('mergeGraph');
+        let comparativeGraph = document.getElementById('comparative');
+        let compartiveLogGraph = document.getElementById('compLogGraph');
 
         const quickChart = new Chart(quickGraph, {
             type: 'line',
@@ -234,6 +280,104 @@
                     borderColor: 'rgb(25, 0, 255)',
                     backgroundColor: 'rgb(25, 0, 255)',
                     data: SortingData.bubbleSegundos100K,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                        beginAtZero: true
+                        }
+                     }]
+                },
+                legend: {
+                    labels: { boxWidth: 15, fontSize: 10}
+                }
+            },
+        })
+
+        const mergeChart = new Chart(mergeGraph, {
+            type: 'line',
+            data: {
+                labels: SortingData.labels,
+                datasets: [{
+                    label: 'Mergesort 1K',
+                    borderColor: 'rgb(3, 252, 73)',
+                    backgroundColor: 'rgb(3, 252, 73)',
+                    data: SortingData.mergeSegundos1K,
+                    fill: false,
+                },{
+                    label: 'MergeSort 10k',
+                    borderColor: 'rgb(32, 199, 6)',
+                    backgroundColor: 'rgb(32, 199, 6)',
+                    data: SortingData.mergeSegundos10K,
+                    fill: false,
+                }, {
+                    label: 'MergeSort 100K',
+                    borderColor: 'rgb(10, 77, 0)',
+                    backgroundColor: 'rgb(10, 77, 0)',
+                    data: SortingData.mergeSegundos100k,
+                    fill: false,
+                },]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                        beginAtZero: true
+                        }
+                     }]
+                },
+                legend: {
+                    labels: { boxWidth: 15, fontSize: 10}
+                }
+            },
+        })
+
+        const comparativeLog = new Chart(compartiveLogGraph, {
+            type: 'line',
+            data: {
+                labels: SortingData.labels,
+                datasets: [{
+                    label: 'Mergesort 1K',
+                    borderColor: 'rgb(3, 252, 73)',
+                    backgroundColor: 'rgb(3, 252, 73)',
+                    data: SortingData.mergeSegundos1K,
+                    fill: false,
+                },{
+                    label: 'MergeSort 10k',
+                    borderColor: 'rgb(32, 199, 6)',
+                    backgroundColor: 'rgb(32, 199, 6)',
+                    data: SortingData.mergeSegundos10K,
+                    fill: false,
+                }, {
+                    label: 'MergeSort 100K',
+                    borderColor: 'rgb(10, 77, 0)',
+                    backgroundColor: 'rgb(10, 77, 0)',
+                    data: SortingData.mergeSegundos100k,
+                    fill: false,
+                },{
+                    label: 'Quicksort 1K',
+                    borderColor: 'rgb(255, 130, 188)',
+                    backgroundColor: 'rgb(255, 130, 188)',
+                    data: SortingData.quicksortSegundos1K,
+                    fill: false
+                }, {
+                    label: 'Quicksort 10K',
+                    borderColor: 'rgb(191, 31, 105)',
+                    backgroundColor: 'rgb(191, 31, 105)',
+                    data: SortingData.quicksortSegundos10K,
+                    fill: false,
+                },{
+                    label: 'Quicksort 100k',
+                    borderColor: 'rgb(255, 0, 118)',
+                    backgroundColor: 'rgb(255, 0, 118)',
+                    data: SortingData.quicksortSegundos100K,
                     fill: false,
                 }]
             },
